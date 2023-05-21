@@ -44,7 +44,7 @@ ul {
   color: inherit;
 }
 
-.header__list__item__a--auth {
+.header__auth-btn {
   display: flex;
   align-items: center;
 }
