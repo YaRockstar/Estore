@@ -6,11 +6,18 @@ export const htmlService = {
           Add to cart
         </button>
         <img src="${product.img}" name="${name}"/>
-        <small>${title}</small>
+        <small>${product.name}</small>
         <small>
           <strong>$${product.price}</strong>
         </small>
       </li>
     `;
+  },
+
+  paintProducts(products = []) {
+    if (products.length === 0) {
+      return `<p>Извините, скорее всего какая-то ошибка (((</p>`;
+    }
+    return products.map(this.paintProduct).join('');
   },
 };
