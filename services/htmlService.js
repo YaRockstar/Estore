@@ -1,23 +1,33 @@
 export const htmlService = {
   paintProduct(product) {
+    const productName = product.name
+      .split(' ')
+      .map(word => word + '<wbr>')
+      .join(' ');
     return `
-      <li>
-        <button class="cart-btn" data-id="${product.id}">
+      <li class="menu__product-list__item">
+        <img src="${product.img}" class="menu__product__img"/>
+        <div class="menu__product-list__name">${productName}</div>
+        <div class="menu__product-list__price">${product.price}₽</div>
+        <button class="menu__product__toCart-btn" data-id="${product.id}">
           Add to cart
         </button>
-        <img src="${product.img}" name="${name}"/>
-        <small>${product.name}</small>
-        <small>
-          <strong>$${product.price}</strong>
-        </small>
       </li>
     `;
   },
 
   paintProducts(products = []) {
     if (products.length === 0) {
-      return `<p>Извините, скорее всего какая-то ошибка (((</p>`;
+      return `
+        <ul class="menu__product-list">
+          <p>Извините, скорее всего какая-то ошибка (((</p>
+        </ul>
+      `;
     }
-    return products.map(this.paintProduct).join('');
+    return `
+      <ul class="menu__product-list">
+        ${products.map(this.paintProduct).join('')}
+      </ul>
+    `;
   },
 };
