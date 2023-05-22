@@ -1,1 +1,6 @@
-export class HTMLService {}
+export class HTMLService {
+  paintProduct(product) {
+    return `
+    `;
+  }
+}
