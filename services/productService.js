@@ -1,1 +1,1 @@
-export class ProductService {}
+export const productService = {};

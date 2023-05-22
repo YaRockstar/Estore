@@ -1,4 +1,4 @@
-export class HTMLService {
+export const htmlService = {
   paintProduct(product) {
     return `
       <li>
@@ -12,5 +12,5 @@ export class HTMLService {
         </small>
       </li>
     `;
-  }
-}
+  },
+};
