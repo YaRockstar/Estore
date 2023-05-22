@@ -1,10 +1,16 @@
-document.querySelector('.header__menu-btn').addEventListener('click', () => {
-  const content = document.querySelector('.content');
-  content.innerHTML = data;
-});
+import { htmlService } from './services/htmlService.js';
+// import { productService } from './services/productService.js';
+import { store } from './store/store.js';
 
-document.querySelector('.header__logo').addEventListener('click', () => {
-  const content = document.querySelector('.content');
+const logo = document.querySelector('.header__logo');
+const menuBtn = document.querySelector('.header__menu-btn');
+const content = document.querySelector('.content');
+
+const renderProducts = products => {
+  content.innerHTML = htmlService.paintProducts(products);
+};
+
+logo.addEventListener('click', () => {
   content.innerHTML = `
       <h1>
         Добро пожаловать в "Японский клуб"
@@ -17,3 +23,11 @@ document.querySelector('.header__logo').addEventListener('click', () => {
       </div>
   `;
 });
+
+menuBtn.addEventListener('click', () => {
+  renderProducts(store.productList);
+});
+
+// const renderCart = cartList => {
+//   cardContainer.innerHTML = html.paintCart(cartList);
+// };
