@@ -17,10 +17,6 @@ a:hover {
   color: grey;
 }
 
-ul {
-  list-style: none;
-}
-
 .header {
   background-color: rgb(0, 0, 0);
   color: white;
@@ -36,6 +32,7 @@ ul {
   align-items: center;
   justify-content: space-around;
   padding: 10px;
+  list-style: none;
 }
 
 .header__menu-btn {
@@ -65,21 +62,6 @@ ul {
   padding: 2px;
 }
 
-.content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.content > h3 {
-  text-align: center;
-}
-
-.content > h1 {
-  text-align: center;
-}
-
 .footer {
   background-color: rgb(0, 0, 0);
   color: white;
@@ -96,8 +78,49 @@ ul {
 .footer__social-networks {
   display: flex;
   justify-content: space-between;
+  list-style: none;
 }
 
 .footer__social-networks__item {
   margin-right: 30px;
+}
+
+.content__main-page {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.content__main-page > h3 {
+  text-align: center;
+}
+
+.content__main-page > h1 {
+  text-align: center;
+}
+
+.content__menu {
+  max-width: 1000px;
+  margin: auto;
+}
+
+.menu__product-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.menu__product-list__item {
+  text-align: center;
+  margin: 20px;
+  max-width: 250px;
+}
+
+.menu__product__img {
+  width: 100px;
+}
+
+.menu__product-list__name {
+  overflow-wrap: break-word;
 }
