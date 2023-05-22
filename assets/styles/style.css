@@ -38,6 +38,12 @@ ul {
   padding: 10px;
 }
 
+.header__menu-btn {
+  background-color: inherit;
+  color: inherit;
+  border: none;
+}
+
 .header__select-area {
   background-color: inherit;
   border: none;
@@ -45,8 +51,11 @@ ul {
 }
 
 .header__auth-btn {
+  background-color: black;
+  color: white;
   display: flex;
   align-items: center;
+  border: none;
 }
 
 .header__list__item__login-icon {
