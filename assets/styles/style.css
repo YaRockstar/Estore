@@ -118,7 +118,7 @@ a:hover {
 }
 
 .menu__product__img {
-  width: 100px;
+  width: inherit;
 }
 
 .menu__product-list__name {
