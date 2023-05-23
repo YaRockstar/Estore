@@ -10,7 +10,7 @@ export const htmlService = {
         <div class="menu__product-list__name">${productName}</div>
         <div class="menu__product-list__price">${product.price}₽</div>
         <button class="menu__product__toCart-btn" data-id="${product.id}">
-          Add to cart
+          В корзину
         </button>
       </li>
     `;

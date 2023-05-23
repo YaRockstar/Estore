@@ -35,7 +35,8 @@ a:hover {
   list-style: none;
 }
 
-.header__menu-btn {
+.header__menu-btn,
+.header__cart-btn {
   background-color: inherit;
   color: inherit;
   border: none;
@@ -118,7 +119,7 @@ a:hover {
 }
 
 .menu__product__img {
-  width: 100px;
+  width: inherit;
 }
 
 .menu__product-list__name {
