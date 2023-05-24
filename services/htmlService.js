@@ -1,13 +1,13 @@
 export const htmlService = {
   paintProduct(product) {
-    const productName = product.name
-      .split(' ')
-      .map(word => word + '<wbr>')
-      .join(' ');
+    // const productName = product.name
+    //   .split(' ')
+    //   .map(word => word + '<wbr>')
+    //   .join(' ');
     return `
       <li class="menu__product-list__item">
-        <img src="${product.img}" class="menu__product__img"/>
-        <div class="menu__product-list__name">${productName}</div>
+        <img src="${product.image_path}" class="menu__product__img"/>
+        <div class="menu__product-list__name">${product.name}</div>
         <div class="menu__product-list__price">${product.price}₽</div>
         <button class="menu__product__toCart-btn" data-id="${product.id}">
           В корзину
@@ -16,7 +16,7 @@ export const htmlService = {
     `;
   },
 
-  paintProducts(products = []) {
+  paintProducts(products) {
     if (products.length === 0) {
       return `
         <ul class="menu__product-list">
@@ -24,6 +24,7 @@ export const htmlService = {
         </ul>
       `;
     }
+    console.log(products);
     return `
       <ul class="menu__product-list">
         ${products.map(this.paintProduct).join('')}

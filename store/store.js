@@ -1,4 +1,6 @@
-import { data } from '../data/data.js';
+// import { data } from '../data/data.js';
+import { URL_PRODUCTS } from '../constants/constants.js';
+import { getProducts } from '../api/api.js';
 
 export const store = {
   state: {
@@ -7,6 +9,6 @@ export const store = {
       lastName: 'lastName',
       area: 'area',
     },
-    productList: data,
+    productList: await getProducts(URL_PRODUCTS),
   },
 };
