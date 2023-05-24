@@ -19,9 +19,11 @@ export const store = {
       }
 
       cart.list[id] = {
+        id,
         name: product.name,
         price: product.price,
         count: 1,
+        image: product.image_path,
       };
       cart.totalPrice += cart.list[id].price;
     },
@@ -30,7 +32,8 @@ export const store = {
       const cart = store.state.cart;
 
       if (cart.list[productId].count === 1) {
-        cart = cart.list.filter(product => product.id !== productId);
+        cart.totalPrice -= cart.list[productId].price;
+        delete cart.list[productId];
         return;
       }
       cart.list[productId].count--;
@@ -38,8 +41,8 @@ export const store = {
     },
 
     clearCart() {
-      cart.totalPrice = 0;
-      cart.list = {};
+      store.state.cart.totalPrice = 0;
+      store.state.cart.list = {};
     },
   },
 };
