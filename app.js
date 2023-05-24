@@ -1,20 +1,46 @@
-import { productService } from './services/productService.js';
 import { store } from './store/store.js';
+import { productService } from './services/productService.js';
 
-import { renderMainPage, renderMenu, renderCart } from './render/render.js';
+import { URL_PRODUCTS } from '../constants/constants.js';
+import * as HTTP from '../api/api.js';
 
+import * as Render from './render/render.js';
+
+const content = document.querySelector('.content');
 const logo = document.querySelector('.header__logo');
 const menuBtn = document.querySelector('.header__menu-btn');
-const content = document.querySelector('.content');
+const cartBtn = document.querySelector('.header__cart-btn');
 
-const start = async () => {};
+const start = async () => {
+  try {
+    store.state.productList = await HTTP.getProducts(URL_PRODUCTS);
+
+    // const localStorageCart = JSON.parse(localStorage.getItem('cart'));
+    // store.state.cart = localStorageCart ? localStorageCart : store.state.cart;
+  } catch (e) {
+    console.log(e.message);
+    // productsContainer.innerHTML = `<p style="color: red">Error</p>`;
+  }
+};
+
+content.addEventListener('click', event => {
+  const productId = Number(event.target.dataset?.id);
+
+  if (productId) {
+    const product = store.state.productList.find(p => p.id === productId);
+    store.mutations.addToCart(product);
+    localStorage.setItem('cart', JSON.stringify(store.state.cart));
+  }
+});
 
 logo.addEventListener('click', () => {
-  renderMainPage(content);
+  Render.renderMainPage(content);
 });
 
 menuBtn.addEventListener('click', () => {
-  renderMenu(content, store.state.productList);
+  Render.renderMenu(content, store.state.productList);
 });
+
+cartBtn.addEventListener('click', event => {});
 
 await start();

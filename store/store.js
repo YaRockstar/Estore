@@ -1,14 +1,45 @@
-import { URL_PRODUCTS } from '../constants/constants.js';
-import { getProducts } from '../api/api.js';
-
 export const store = {
   state: {
-    user: {
-      name: 'user',
-      lastName: 'lastName',
-      area: 'area',
+    user: {},
+    productList: [],
+    cart: {
+      totalPrice: 0,
+      list: {},
     },
-    productList: await getProducts(URL_PRODUCTS),
-    cart: localStorage.getItem('cart') || [],
+  },
+  mutations: {
+    addToCart(product) {
+      const cart = store.state.cart;
+      console.log(cart);
+      const id = product.id;
+      if (cart.list[id]) {
+        cart.list[id].count++;
+        cart.totalPrice += cart.list[id].price;
+        return;
+      }
+
+      cart.list[id] = {
+        name: product.name,
+        price: product.price,
+        count: 1,
+      };
+      cart.totalPrice += cart.list[id].price;
+    },
+
+    removeFromCart(productId) {
+      const cart = store.state.cart;
+
+      if (cart.list[productId].count === 1) {
+        cart = cart.list.filter(product => product.id !== productId);
+        return;
+      }
+      cart.list[productId].count--;
+      cart.totalPrice -= cart.list[productId].price;
+    },
+
+    clearCart() {
+      cart.totalPrice = 0;
+      cart.list = {};
+    },
   },
 };
