@@ -6,8 +6,8 @@ export const htmlService = {
         <div class="menu__product-list__name">${product.name}</div>
         <div class="menu__product-list__price">Цена: ${product.price}₽</div>
         <div class="menu__product-list__categories-wrap">
-          <div class="menu__product-list__category">Категория: ${product.cooked_category_name}</div>
-          <div class="menu__product-list__category">Категория: ${product.season_category_name}</div>
+          <div class="menu__product-list__category">Вид: ${product.cooked_category_name}</div>
+          <div class="menu__product-list__category">Сезон: ${product.season_category_name}</div>
         </div>
         <button class="menu__product__toCart-btn" data-id="${product.id}">
           В корзину
