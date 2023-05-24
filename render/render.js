@@ -47,10 +47,10 @@ export const renderProducts = (element, products) => {
   element.innerHTML = htmlService.paintProducts(products);
 };
 
-export const renderCart = (element, cartItems) => {
+export const renderCart = (element, cart) => {
   element.innerHTML = `
     <div class="content__cart">
-      ${htmlService.paintCart(cartItems)}
+      ${htmlService.paintCart(cart)}
     </div>
   `;
 };
