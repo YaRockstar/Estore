@@ -9,5 +9,6 @@ export const store = {
       area: 'area',
     },
     productList: await getProducts(URL_PRODUCTS),
+    cart: localStorage.getItem('cart') || [],
   },
 };
