@@ -42,12 +42,6 @@ a:hover {
   border: none;
 }
 
-.header__select-area {
-  background-color: inherit;
-  border: none;
-  color: inherit;
-}
-
 .header__auth-btn {
   background-color: black;
   color: white;
@@ -144,4 +138,23 @@ a:hover {
 .menu__product-list__category {
   margin-top: 10px;
   text-align: center;
+}
+
+.menu_categories {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: large;
+}
+
+.menu_categories__season-select {
+  background-color: inherit;
+  border: none;
+  color: inherit;
+}
+
+.menu_categories__cooked-select {
+  background-color: inherit;
+  border: none;
+  color: inherit;
 }
