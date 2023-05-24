@@ -14,6 +14,14 @@ const renderMenu = products => {
   `;
 };
 
+const renderCart = cartList => {
+  content.innerHTML = `
+    <div class="content__cart">
+      ${htmlService.paintCartItems(cartList)}
+    </div>
+  `;
+};
+
 logo.addEventListener('click', () => {
   content.innerHTML = `
       <div class="content__main-page">
@@ -33,7 +41,3 @@ logo.addEventListener('click', () => {
 menuBtn.addEventListener('click', () => {
   renderMenu(store.state.productList);
 });
-
-// const renderCart = cartList => {
-//   cardContainer.innerHTML = html.paintCart(cartList);
-// };
