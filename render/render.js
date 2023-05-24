@@ -1,7 +1,7 @@
 import { htmlService } from '../services/htmlService.js';
 
 export const renderMainPage = element => {
-  root.innerHTML = `
+  element.innerHTML = `
       <div class="content__main-page">
         <h1>
           Добро пожаловать в "Японский клуб"
