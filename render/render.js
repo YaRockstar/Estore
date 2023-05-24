@@ -1,6 +1,6 @@
 import { htmlService } from '../services/htmlService.js';
 
-export const renderMainPage = root => {
+export const renderMainPage = element => {
   root.innerHTML = `
       <div class="content__main-page">
         <h1>
@@ -16,8 +16,8 @@ export const renderMainPage = root => {
   `;
 };
 
-export const renderMenu = (root, products) => {
-  root.innerHTML = `
+export const renderMenu = (element, products) => {
+  element.innerHTML = `
     <div class="content__menu">
       <div></div>
       ${htmlService.paintProducts(products)}
@@ -25,12 +25,14 @@ export const renderMenu = (root, products) => {
   `;
 };
 
-export const renderCart = (root, cartItems) => {
-  root.innerHTML = `
+export const renderCart = (element, cartItems) => {
+  element.innerHTML = `
     <div class="content__cart">
       ${htmlService.paintCart(cartItems)}
     </div>
   `;
 };
 
-export const renderPersonalAccount = root => {};
+export const renderPersonalAccount = element => {};
+
+export const renderError = (element, error) => {};
