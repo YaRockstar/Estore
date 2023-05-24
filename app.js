@@ -7,7 +7,7 @@ const logo = document.querySelector('.header__logo');
 const menuBtn = document.querySelector('.header__menu-btn');
 const content = document.querySelector('.content');
 
-const start = () => {};
+const start = async () => {};
 
 logo.addEventListener('click', () => {
   renderMainPage(content);
@@ -16,3 +16,5 @@ logo.addEventListener('click', () => {
 menuBtn.addEventListener('click', () => {
   renderMenu(content, store.state.productList);
 });
+
+await start();

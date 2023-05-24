@@ -19,6 +19,7 @@ export const renderMainPage = root => {
 export const renderMenu = (root, products) => {
   root.innerHTML = `
     <div class="content__menu">
+      <div></div>
       ${htmlService.paintProducts(products)}
     </div>
   `;
