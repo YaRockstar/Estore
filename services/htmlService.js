@@ -5,6 +5,8 @@ export const htmlService = {
         <img src="${product.image_path}" class="menu__product__img"/>
         <div class="menu__product-list__name">${product.name}</div>
         <div class="menu__product-list__price">${product.price}₽</div>
+        <div>${product.cooked_category_name}</div>
+        <div>${product.season_category_name}</div>
         <button class="menu__product__toCart-btn" data-id="${product.id}">
           В корзину
         </button>
@@ -23,6 +25,34 @@ export const htmlService = {
     return `
       <ul class="menu__product-list">
         ${products.map(this.paintProduct).join('')}
+      </ul>
+    `;
+  },
+
+  paintCartItem(item) {
+    return `
+      <li class="cart__list__item">
+        <img src="${item.image_path}" class="menu__product__img"/>
+        <div class="menu__product-list__name">${product.name}</div>
+        <div class="menu__product-list__price">${product.price}₽</div>
+        <button class="menu__product__toCart-btn" data-id="${product.id}">
+          В корзину
+        </button>
+      </li>
+    `;
+  },
+
+  paintCart(cartItems) {
+    if (cartItems.length === 0) {
+      return `
+        <ul class="menu__product-list">
+          <p>Ваша корзина пока что пустая</p>
+        </ul>
+      `;
+    }
+    return `
+      <ul class="menu__product-list">
+        ${cartItems.map(this.paintCartItem).join('')}
       </ul>
     `;
   },
