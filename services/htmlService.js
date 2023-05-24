@@ -20,7 +20,6 @@ export const htmlService = {
         </ul>
       `;
     }
-    console.log(products);
     return `
       <ul class="menu__product-list">
         ${products.map(this.paintProduct).join('')}
