@@ -1,7 +1,6 @@
 import { htmlService } from './services/htmlService.js';
 import { productService } from './services/productService.js';
 import { store } from './store/store.js';
-import { data } from './data/data.js';
 
 const logo = document.querySelector('.header__logo');
 const menuBtn = document.querySelector('.header__menu-btn');
@@ -32,7 +31,6 @@ logo.addEventListener('click', () => {
 });
 
 menuBtn.addEventListener('click', () => {
-  console.log(data);
   renderMenu(store.state.productList);
 });
 
