@@ -93,12 +93,14 @@ a:hover {
   transform: translate(-50%, -50%);
 }
 
-.content__main-page > h3 {
-  text-align: center;
-}
-
 .content__main-page > h1 {
   text-align: center;
+  margin-bottom: 10px;
+}
+
+.content__main-page > h3 {
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 .content__menu {
@@ -121,9 +123,25 @@ a:hover {
 }
 
 .menu__product__img {
-  width: inherit;
+  width: 100%;
+  height: 50%;
+  margin-bottom: 15px;
 }
 
 .menu__product-list__name {
   overflow-wrap: break-word;
+  font-weight: bold;
+}
+
+.menu__product-list__price {
+  margin-top: 10px;
+}
+
+.menu__product-list__categories-wrap {
+  margin-bottom: 10px;
+}
+
+.menu__product-list__category {
+  margin-top: 10px;
+  text-align: center;
 }
