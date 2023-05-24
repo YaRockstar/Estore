@@ -1,9 +1,5 @@
 export const htmlService = {
   paintProduct(product) {
-    // const productName = product.name
-    //   .split(' ')
-    //   .map(word => word + '<wbr>')
-    //   .join(' ');
     return `
       <li class="menu__product-list__item">
         <img src="${product.image_path}" class="menu__product__img"/>
