@@ -1,6 +1,6 @@
 import { store } from './store/store.js';
 
-import { URL_PRODUCTS } from '../constants/constants.js';
+import { URL_PRODUCTS, URL_ORDER } from '../constants/constants.js';
 import * as HTTP from '../api/api.js';
 import * as Render from './render/render.js';
 
@@ -15,12 +15,16 @@ const start = async () => {
 
     const localStorageCart = JSON.parse(localStorage.getItem('cart'));
     store.state.cart = localStorageCart ? localStorageCart : store.state.cart;
+
+    if (localStorage.getItem('token') === null) {
+      store.state.user.isAuth = false;
+    }
   } catch (e) {
     console.log(e.message);
   }
 };
 
-content.addEventListener('click', event => {
+content.addEventListener('click', async event => {
   const productId = Number(event.target.dataset?.id);
 
   if (productId) {
@@ -83,6 +87,33 @@ content.addEventListener('click', event => {
     localStorage.setItem('cart', JSON.stringify(store.state.cart));
 
     Render.renderCart(content, store.state.cart);
+    return;
+  }
+
+  if (type === 'place') {
+    Render.renderOrderData(content, {
+      user: store.state.user,
+      totalPrice: store.state.cart.totalPrice,
+    });
+    return;
+  }
+
+  if (type === 'place-order') {
+    const name = document.querySelector('.user-name').value;
+    const email = document.querySelector('.user-email').value;
+    const phone = document.querySelector('.user-phone').value;
+    const address = document.querySelector('.user-address').value;
+
+    store.state.user.name = name;
+    store.state.user.email = email;
+    store.state.user.phone = phone;
+    store.state.user.address = address;
+
+    const result = await HTTP.postOrder(URL_ORDER, {
+      user: store.state.user,
+      cart: store.state.cart,
+    });
+
     return;
   }
 });

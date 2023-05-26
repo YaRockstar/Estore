@@ -183,3 +183,8 @@ a:hover {
   margin-top: 10px;
   margin-bottom: 100px;
 }
+
+.content__order {
+  max-width: 880px;
+  margin: auto;
+}
