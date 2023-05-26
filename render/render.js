@@ -55,6 +55,20 @@ export const renderCart = (element, cart) => {
   `;
 };
 
-export const renderPersonalAccount = element => {};
+export const renderOrderData = (element, { user, totalPrice }) => {
+  element.innerHTML = `
+    <div class="content__order">
+      ${htmlService.paintOrderData(user, totalPrice)}
+    </div>
+  `;
+};
+
+export const renderPersonalAccount = element => {
+  element.innerHTML = `
+    <div class="content__cart">
+      ${htmlService.paint()}
+    </div>
+  `;
+};
 
 export const renderError = (element, error) => {};

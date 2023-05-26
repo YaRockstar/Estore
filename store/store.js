@@ -1,6 +1,9 @@
 export const store = {
   state: {
-    user: {},
+    user: {
+      email: '',
+      isAuth: false,
+    },
     productList: [],
     cart: {
       totalPrice: 0,
