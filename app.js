@@ -47,14 +47,18 @@ content.addEventListener('click', async event => {
 
     Render.renderProducts(productListWrap, seasonList);
     return;
-  } else if (cookedCategories.includes(categoryName)) {
+  }
+
+  if (cookedCategories.includes(categoryName)) {
     const cookedList = store.state.productList.filter(
       product => product.cooked_category_name === categoryName
     );
 
     Render.renderProducts(productListWrap, cookedList);
     return;
-  } else if (productListWrap) {
+  }
+
+  if (productListWrap) {
     Render.renderProducts(productListWrap, store.state.productList);
     return;
   }
