@@ -17,6 +17,7 @@ export const postOrder = async (URL, { user, cart }) => {
       },
       body: JSON.stringify({ user, cart }),
     });
+
     return await response.json();
   } catch (error) {
     console.error('Ошибка при выполнении запроса:', error);
