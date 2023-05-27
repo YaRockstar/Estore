@@ -1,4 +1,4 @@
-import * as HTTP from '../api/api.js';
+import * as HTTP from './services/api.js';
 import * as Render from './render/render.js';
 
 import { store } from './store/store.js';
