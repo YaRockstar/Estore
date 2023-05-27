@@ -9,21 +9,6 @@ const logo = document.querySelector('.header__logo');
 const menuBtn = document.querySelector('.header__menu-btn');
 const cartBtn = document.querySelector('.header__cart-btn');
 
-const start = async () => {
-  try {
-    store.state.productList = await HTTP.getProducts(URL_PRODUCTS);
-
-    const localStorageCart = JSON.parse(localStorage.getItem('cart'));
-    store.state.cart = localStorageCart ? localStorageCart : store.state.cart;
-
-    if (localStorage.getItem('token') === null) {
-      store.state.user.isAuth = false;
-    }
-  } catch (e) {
-    console.log(e.message);
-  }
-};
-
 content.addEventListener('click', async event => {
   const productId = Number(event.target.dataset?.id);
 
@@ -131,5 +116,20 @@ menuBtn.addEventListener('click', () => {
 cartBtn.addEventListener('click', () => {
   Render.renderCart(content, store.state.cart);
 });
+
+const start = async () => {
+  try {
+    store.state.productList = await HTTP.getProducts(URL_PRODUCTS);
+
+    const localStorageCart = JSON.parse(localStorage.getItem('cart'));
+    store.state.cart = localStorageCart ? localStorageCart : store.state.cart;
+
+    if (localStorage.getItem('token') === null) {
+      store.state.user.isAuth = false;
+    }
+  } catch (e) {
+    console.log(e.message);
+  }
+};
 
 await start();
