@@ -1,8 +1,8 @@
-import { store } from './store/store.js';
-
-import { URL_PRODUCTS, URL_ORDER } from '../constants/constants.js';
 import * as HTTP from '../api/api.js';
 import * as Render from './render/render.js';
+
+import { store } from './store/store.js';
+import { URL_PRODUCTS, URL_ORDER } from '../constants/constants.js';
 
 const content = document.querySelector('.content');
 const logo = document.querySelector('.header__logo');
@@ -113,8 +113,6 @@ content.addEventListener('click', async event => {
       user: store.state.user,
       cart: store.state.cart,
     });
-
-    return;
   }
 });
 
