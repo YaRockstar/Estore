@@ -20,7 +20,7 @@ export const renderCart = (element, cart) => {
   `;
 };
 
-export const renderOrderData = (element, { user, totalPrice }) => {
+export const renderOrder = (element, { user, totalPrice }) => {
   element.innerHTML = `
     <div class="content__order">
       ${Component.Order(user, totalPrice)}

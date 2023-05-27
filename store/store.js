@@ -10,11 +10,12 @@ export const store = {
       list: {},
     },
   },
+
   mutations: {
     addToCart(product) {
       const cart = store.state.cart;
-      console.log(cart);
       const id = product.id;
+
       if (cart.list[id]) {
         cart.list[id].count++;
         cart.totalPrice += cart.list[id].price;
@@ -28,6 +29,7 @@ export const store = {
         count: 1,
         image: product.image_path,
       };
+
       cart.totalPrice += cart.list[id].price;
     },
 
@@ -39,6 +41,7 @@ export const store = {
         delete cart.list[productId];
         return;
       }
+
       cart.list[productId].count--;
       cart.totalPrice -= cart.list[productId].price;
     },

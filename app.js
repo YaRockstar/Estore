@@ -9,26 +9,61 @@ const logo = document.querySelector('.header__logo');
 const menuBtn = document.querySelector('.header__menu-btn');
 const cartBtn = document.querySelector('.header__cart-btn');
 
-const start = async () => {
-  try {
-    store.state.productList = await HTTP.getProducts(URL_PRODUCTS);
+const handleAddingToCart = () => {
+  const productId = Number(event.target.closest('div')?.dataset?.id);
+  const product = store.state.productList.find(p => p.id === productId);
 
-    const localStorageCart = JSON.parse(localStorage.getItem('cart'));
-    store.state.cart = localStorageCart ? localStorageCart : store.state.cart;
+  store.mutations.addToCart(product);
+  localStorage.setItem('cart', JSON.stringify(store.state.cart));
 
-    if (localStorage.getItem('token') === null) {
-      store.state.user.isAuth = false;
-    }
-  } catch (e) {
-    console.log(e.message);
-  }
+  Render.renderCart(content, store.state.cart);
+};
+
+const handleRemovingFromCart = event => {
+  const productId = Number(event.target.closest('div')?.dataset?.id);
+
+  store.mutations.removeFromCart(productId);
+  localStorage.setItem('cart', JSON.stringify(store.state.cart));
+
+  Render.renderCart(content, store.state.cart);
+};
+
+const handleClearingCart = () => {
+  store.mutations.clearCart();
+  localStorage.removeItem('cart');
+
+  Render.renderCart(content, store.state.cart);
+};
+
+const handleMoveToPlacingOrder = () => {
+  Render.renderOrder(content, {
+    user: store.state.user,
+    totalPrice: store.state.cart.totalPrice,
+  });
+};
+
+const handlePlacingOrder = async () => {
+  const name = document.querySelector('.user-name').value;
+  const email = document.querySelector('.user-email').value;
+  const phone = document.querySelector('.user-phone').value;
+  const address = document.querySelector('.user-address').value;
+
+  store.state.user.name = name;
+  store.state.user.email = email;
+  store.state.user.phone = phone;
+  store.state.user.address = address;
+
+  await HTTP.postOrder(URL_ORDER, {
+    user: store.state.user,
+    cart: store.state.cart,
+  });
 };
 
 content.addEventListener('click', async event => {
   const productId = Number(event.target.dataset?.id);
 
   if (productId) {
-    const product = store.state.productList.find(p => p.id === productId);
+    const product = store.state.productList.find(product => product.id === productId);
     store.mutations.addToCart(product);
     localStorage.setItem('cart', JSON.stringify(store.state.cart));
     return;
@@ -66,57 +101,27 @@ content.addEventListener('click', async event => {
   const type = event.target.dataset?.type;
 
   if (type === 'clear') {
-    store.mutations.clearCart();
-    localStorage.removeItem('cart');
-
-    Render.renderCart(content, store.state.cart);
+    handleClearingCart();
     return;
   }
 
   if (type === 'add') {
-    const productId = Number(event.target.closest('div')?.dataset?.id);
-    const product = store.state.productList.find(p => p.id === productId);
-
-    store.mutations.addToCart(product);
-    localStorage.setItem('cart', JSON.stringify(store.state.cart));
-
-    Render.renderCart(content, store.state.cart);
+    handleAddingToCart(event);
     return;
   }
 
   if (type === 'remove') {
-    const productId = Number(event.target.closest('div')?.dataset?.id);
-
-    store.mutations.removeFromCart(productId);
-    localStorage.setItem('cart', JSON.stringify(store.state.cart));
-
-    Render.renderCart(content, store.state.cart);
+    handleRemovingFromCart(event);
     return;
   }
 
   if (type === 'place') {
-    Render.renderOrderData(content, {
-      user: store.state.user,
-      totalPrice: store.state.cart.totalPrice,
-    });
+    handleMoveToPlacingOrder();
     return;
   }
 
   if (type === 'place-order') {
-    const name = document.querySelector('.user-name').value;
-    const email = document.querySelector('.user-email').value;
-    const phone = document.querySelector('.user-phone').value;
-    const address = document.querySelector('.user-address').value;
-
-    store.state.user.name = name;
-    store.state.user.email = email;
-    store.state.user.phone = phone;
-    store.state.user.address = address;
-
-    await HTTP.postOrder(URL_ORDER, {
-      user: store.state.user,
-      cart: store.state.cart,
-    });
+    handlePlacingOrder();
   }
 });
 
@@ -131,5 +136,20 @@ menuBtn.addEventListener('click', () => {
 cartBtn.addEventListener('click', () => {
   Render.renderCart(content, store.state.cart);
 });
+
+const start = async () => {
+  try {
+    if (localStorage.getItem('token') === null) {
+      store.state.user.isAuth = false;
+    }
+
+    store.state.productList = await HTTP.getProducts(URL_PRODUCTS);
+
+    const localStorageCart = JSON.parse(localStorage.getItem('cart'));
+    store.state.cart = localStorageCart ? localStorageCart : store.state.cart;
+  } catch (e) {
+    console.log(e.message);
+  }
+};
 
 await start();
