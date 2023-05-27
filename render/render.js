@@ -1,18 +1,18 @@
-import { htmlService } from '../services/htmlService.js';
+import * as Component from '../components/index.js';
 
 export const renderMainPage = element => {
   element.innerHTML = `
-      <div class="content__main-page">
-        <h1>
-          Добро пожаловать в "Японский клуб"
-        </h1>
-        <h3>
-          Мы предлагаем вам лучшие роллы в городе! Закажите сейчас и наслаждайтесь вкусом.
-        </h3>
-        <div class="main-page--image">
-          <img src="assets/img/content/delivery.jpg" alt="Доставляем даже в удаленные районы" />
-        </div>
+    <div class="content__main-page">
+      <h1>
+        Добро пожаловать в "Японский клуб"
+      </h1>
+      <h3>
+        Мы предлагаем вам лучшие роллы в городе! Закажите сейчас и наслаждайтесь вкусом.
+      </h3>
+      <div class="main-page--image">
+        <img src="assets/img/content/delivery.jpg" alt="Доставляем даже в удаленные районы" />
       </div>
+    </div>
   `;
 };
 
@@ -37,20 +37,20 @@ export const renderMenu = (element, products) => {
         </select>
       </div>
       <div class="menu__product-list-wrap">
-        ${htmlService.paintProducts(products)}
+        ${Component.ProductList(products)}
       </div>
     </div>
   `;
 };
 
 export const renderProducts = (element, products) => {
-  element.innerHTML = htmlService.paintProducts(products);
+  element.innerHTML = Component.ProductList(products);
 };
 
 export const renderCart = (element, cart) => {
   element.innerHTML = `
     <div class="content__cart">
-      ${htmlService.paintCart(cart)}
+      ${Component.Cart(cart)}
     </div>
   `;
 };
@@ -58,17 +58,17 @@ export const renderCart = (element, cart) => {
 export const renderOrderData = (element, { user, totalPrice }) => {
   element.innerHTML = `
     <div class="content__order">
-      ${htmlService.paintOrderData(user, totalPrice)}
+      ${Component.Order(user, totalPrice)}
     </div>
   `;
 };
 
-export const renderPersonalAccount = element => {
-  element.innerHTML = `
-    <div class="content__cart">
-      ${htmlService.paint()}
-    </div>
-  `;
-};
+// export const renderPersonalAccount = element => {
+//   element.innerHTML = `
+//     <div class="content__cart">
+//       ${htmlService.paint()}
+//     </div>
+//   `;
+// };
 
-export const renderError = (element, error) => {};
+// export const renderError = (element, error) => {};
