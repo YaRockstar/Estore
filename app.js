@@ -109,7 +109,7 @@ content.addEventListener('click', async event => {
     store.state.user.phone = phone;
     store.state.user.address = address;
 
-    const result = await HTTP.postOrder(URL_ORDER, {
+    await HTTP.postOrder(URL_ORDER, {
       user: store.state.user,
       cart: store.state.cart,
     });
