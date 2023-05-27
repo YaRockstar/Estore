@@ -1,5 +1,5 @@
 import * as HTTP from './services/api.js';
-import * as Render from './render/render.js';
+import * as Render from './services/render.js';
 
 import { store } from './store/store.js';
 import { URL_PRODUCTS, URL_ORDER } from '../constants/constants.js';
