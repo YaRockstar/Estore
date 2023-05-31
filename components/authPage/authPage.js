@@ -1,6 +1,8 @@
+import { URL_AUTH } from '../../constants/constants.js';
+
 export const AuthPage = () => {
   return `
-    <form class="login-form" action="auth.php" method="POST">
+    <form class="login-form" action="${URL_AUTH}" method="POST">
       <h2>Вход в аккаунт</h2>
       <div class="form-group">
         <label for="username">Имя пользователя</label>

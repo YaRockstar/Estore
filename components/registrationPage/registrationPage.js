@@ -1,6 +1,8 @@
+import { URL_REGISTER } from '../../constants/constants.js';
+
 export const RegistrationPage = () => {
   return `
-    <form class="registration-form" action="register.php" method="POST">
+    <form class="registration-form" action="${URL_REGISTER}" method="POST">
       <h2>Регистрация</h2>
       <div class="form-group">
         <label for="email">Почта</label>
