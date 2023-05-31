@@ -28,6 +28,14 @@ export const renderOrder = (element, { user, totalPrice }) => {
   `;
 };
 
+export const renderAuthPage = element => {
+  element.innerHTML = Component.AuthPage();
+};
+
+export const renderRegistrationPage = element => {
+  element.innerHTML = Component.RegistrationPage();
+};
+
 // export const renderPersonalAccount = element => {
 //   element.innerHTML = `
 //     <div class="content__cart">
