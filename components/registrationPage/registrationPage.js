@@ -26,7 +26,7 @@ export const RegistrationPage = () => {
         <label for="lastName">Фамилия</label>
         <input type="text" id="lastName" name="lastName" placeholder="Введите фамилию" required>
       </div>
-      <button type="submit">Зарегистрироваться</button>
+      <button type="submit" datatype="register">Зарегистрироваться</button>
     </form>
   `;
 };

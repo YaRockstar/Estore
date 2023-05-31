@@ -10,7 +10,7 @@ export const AuthPage = () => {
         <label for="password">Пароль</label>
         <input type="password" id="password" name="password" placeholder="Введите пароль" required>
       </div>
-      <button type="submit">Войти</button>
+      <button type="submit" datatype="login">Войти</button>
     </form>
   `;
 };
