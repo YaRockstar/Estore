@@ -1,7 +1,7 @@
 export const RegistrationPage = () => {
   return `
-    <h2>Регистрация</h2>
     <form class="registration-form" action="register.php" method="POST">
+      <h2>Регистрация</h2>
       <div class="form-group">
         <label for="email">Почта</label>
         <input type="email" id="email" name="email" placeholder="Введите почту" required>
