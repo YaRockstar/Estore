@@ -1,7 +1,7 @@
 export const AuthPage = () => {
   return `
-    <form class="login-form">
-      <h2>Вход в аккаунт</h2>
+    <h2>Вход в аккаунт</h2>
+    <form class="login-form" action="auth.php" method="POST">
       <div class="form-group">
         <label for="username">Имя пользователя</label>
         <input type="text" id="username" name="username" placeholder="Введите имя пользователя" required>
