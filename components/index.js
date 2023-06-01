@@ -8,3 +8,6 @@ export { Cart } from './cart/cart.js';
 export { CartItem } from './cartItem/cartItem.js';
 
 export { Order } from './order/order.js';
+
+export { AuthPage } from './authPage/authPage.js';
+export { RegistrationPage } from './registrationPage/registrationPage.js';

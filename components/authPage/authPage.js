@@ -1,6 +1,8 @@
+import { URL_AUTH } from '../../constants/constants.js';
+
 export const AuthPage = () => {
   return `
-    <form class="login-form">
+    <form class="login-form" action="${URL_AUTH}" method="POST">
       <h2>Вход в аккаунт</h2>
       <div class="form-group">
         <label for="username">Имя пользователя</label>
@@ -10,7 +12,7 @@ export const AuthPage = () => {
         <label for="password">Пароль</label>
         <input type="password" id="password" name="password" placeholder="Введите пароль" required>
       </div>
-      <button type="submit">Войти</button>
+      <button type="submit" datatype="login">Войти</button>
     </form>
   `;
 };
