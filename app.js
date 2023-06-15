@@ -1,15 +1,16 @@
 import * as HTTP from './services/api.js';
 import * as Render from './services/render.js';
+import * as URL from '../constants/constants.js';
 
 import { store } from './store/store.js';
-import { URL_PRODUCTS, URL_ORDER } from '../constants/constants.js';
 
 const content = document.querySelector('.content');
 const logo = document.querySelector('.header__logo');
+const login = document.querySelector('.header__auth-btn');
 const menuBtn = document.querySelector('.header__menu-btn');
 const cartBtn = document.querySelector('.header__cart-btn');
 
-const handleAddingToCart = () => {
+const handleAddingToCart = event => {
   const productId = Number(event.target.closest('div')?.dataset?.id);
   const product = store.state.productList.find(p => p.id === productId);
 
@@ -36,10 +37,15 @@ const handleClearingCart = () => {
 };
 
 const handleMoveToPlacingOrder = () => {
-  Render.renderOrder(content, {
-    user: store.state.user,
-    totalPrice: store.state.cart.totalPrice,
-  });
+  if (store.state.user.isAuth) {
+    Render.renderOrder(content, {
+      user: store.state.user,
+      totalPrice: store.state.cart.totalPrice,
+    });
+    return;
+  }
+
+  Render.renderRegistrationPage(content);
 };
 
 const handlePlacingOrder = async () => {
@@ -53,7 +59,7 @@ const handlePlacingOrder = async () => {
   store.state.user.phone = phone;
   store.state.user.address = address;
 
-  await HTTP.postOrder(URL_ORDER, {
+  await HTTP.postOrder(URL.ORDER_URL, {
     user: store.state.user,
     cart: store.state.cart,
   });
@@ -120,13 +126,49 @@ content.addEventListener('click', async event => {
     return;
   }
 
-  if (type === 'place-order') {
-    handlePlacingOrder();
+  // if (type === 'place-order') {
+  //   handlePlacingOrder();
+  //   return;
+  // }
+
+  if (type === 'login') {
+    const form = document.getElementById('login-form');
+
+    form.addEventListener('submit', async event => {
+      event.preventDefault();
+
+      const formData = new FormData(form);
+      if (await HTTP.authenticate(formData, URL.AUTH_URL)) {
+        store.state.user.isAuth = true;
+
+        Render.renderMainPage(content);
+        Render.renderAccountBtn(login, `${store.state.user.email}`);
+      }
+    });
+    return;
+  }
+
+  if (type === 'register') {
+    const form = document.getElementById('registration-form');
+
+    form.addEventListener('submit', async event => {
+      event.preventDefault();
+
+      const formData = new FormData(form);
+      if (await HTTP.register(formData, URL.REGISTER_URL)) {
+        Render.renderAuthPage();
+      }
+    });
+    return;
   }
 });
 
 logo.addEventListener('click', () => {
   Render.renderMainPage(content);
+});
+
+login.addEventListener('click', () => {
+  Render.renderAuthPage(content);
 });
 
 menuBtn.addEventListener('click', () => {
@@ -139,11 +181,7 @@ cartBtn.addEventListener('click', () => {
 
 const start = async () => {
   try {
-    if (localStorage.getItem('token') === null) {
-      store.state.user.isAuth = false;
-    }
-
-    store.state.productList = await HTTP.getProducts(URL_PRODUCTS);
+    store.state.productList = await HTTP.getProducts(URL.PRODUCTS_URL);
 
     const localStorageCart = JSON.parse(localStorage.getItem('cart'));
     store.state.cart = localStorageCart ? localStorageCart : store.state.cart;
