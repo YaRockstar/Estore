@@ -1,8 +1,6 @@
-import { URL_REGISTER } from '../../constants/constants.js';
-
 export const RegistrationPage = () => {
   return `
-    <form class="registration-form" action="${URL_REGISTER}" method="POST">
+    <form id="registration-form" class="registration-form">
       <h2>Регистрация</h2>
       <div class="form-group">
         <label for="email">Почта</label>
@@ -17,18 +15,18 @@ export const RegistrationPage = () => {
         <input type="text" id="address" name="address" placeholder="Введите адрес" required>
       </div>
       <div class="form-group">
-        <label for="phone">Номер телефона</label>
-        <input type="tel" id="phone" name="phone" placeholder="Введите номер телефона" required>
+        <label for="phone_number">Номер телефона</label>
+        <input type="tel" id="phone_number" name="phone_number" placeholder="Введите номер телефона" required>
       </div>
       <div class="form-group">
-        <label for="firstName">Имя</label>
-        <input type="text" id="firstName" name="firstName" placeholder="Введите имя" required>
+        <label for="first_name">Имя</label>
+        <input type="text" id="first_name" name="first_name" placeholder="Введите имя" required>
       </div>
       <div class="form-group">
-        <label for="lastName">Фамилия</label>
-        <input type="text" id="lastName" name="lastName" placeholder="Введите фамилию" required>
+        <label for="last_name">Фамилия</label>
+        <input type="text" id="last_name" name="last_name" placeholder="Введите фамилию" required>
       </div>
-      <button type="submit" datatype="register">Зарегистрироваться</button>
+      <button data-type="register">Зарегистрироваться</button>
     </form>
   `;
 };
