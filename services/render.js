@@ -36,6 +36,10 @@ export const renderRegistrationPage = element => {
   element.innerHTML = Component.RegistrationPage();
 };
 
+export const renderAccountBtn = (element, data) => {
+  element.textContent = data;
+};
+
 // export const renderPersonalAccount = element => {
 //   element.innerHTML = `
 //     <div class="content__cart">
